@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "804f5d1b-8ec2-40a2-8e01-f8a9e2592a00",
+		"name": "MUSREN SAFARICOM MPESA AND SDP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AUTHENTICATION",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"AppKey\": \"{{APPKEY}}\",\n    \"ApiSecret\": \"{{API_SECRET}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ENV_URL}}/public/token/:service",
+					"host": [
+						"{{ENV_URL}}"
+					],
+					"path": [
+						"public",
+						"token",
+						":service"
+					],
+					"variable": [
+						{
+							"key": "service",
+							"value": "{{SERVICE_CODE}}",
+							"description": "62dfa03aeabc77e249463105"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "AUTHENTICATION",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"AppKey\": \"62ea315fb47687d9cbbf6827\",\n    \"ApiSecret\": \"7kTpE!RVy4q4ni0OuITyjz7VpZq!&DhSw\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/public/token/:service",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"public",
+								"token",
+								":service"
+							],
+							"variable": [
+								{
+									"key": "service",
+									"value": "62dfa03aeabc77e249463105",
+									"description": "62dfa03aeabc77e249463105"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Aug 2022 10:24:28 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "231"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, OPTIONS, GET, PUT, DELETE"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJSb2FtdGVjaCBTb2x1dGlvbnMiLCJzdWIiOiJQYXltZW50IEdhdGV3YXkiLCJleHAiOjE2NjA3MzU0NDUsIm5iZiI6MTY2MDczMTg0NSwiaWF0IjoxNjYwNzMxODQ1fQ.NeUvi81O-cScb0qHxlmL8c7k3C40rM5QMeOQfFbvTFc\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MPESA STK PUSH",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"SERVICE_CODE\", \"62dfa03aeabc77e249463105\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"MSISDN\": \"254797844203\",\n    \"accountNumber\": \"254702079491\",\n    \"externalCode\": \"{{$randomUUID}}\",\n    \"amount\": \"{{$randomInt}}\",\n    \"currentDate\": \"{{$isoTimestamp}}\",\n    \"narration\": \"{{$randomAdjective}}\",\n    \"ISOCurrencyCode\": \"KES\",\n    \"paymentMode\": \"WEB\",\n    \"customerName\":\"{{$randomFullName}}\",\n    \"callback\": \"https://4851-197-248-20-39.in.ngrok.io\",\n    \"appKey\":\"{{APPKEY}}\",\n    \"metadata\": {}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ENV_URL}}/api/v1/payment/:service",
+					"host": [
+						"{{ENV_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						":service"
+					],
+					"variable": [
+						{
+							"key": "service",
+							"value": "{{SERVICE_CODE}}",
+							"description": "Mpesa service code"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "MPESA STK PUSH",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"MSISDN\": \"254797844203\",\n    \"accountNumber\": \"254702079491\",\n    \"externalCode\": \"{{$randomUUID}}\",\n    \"amount\": \"{{$randomInt}}\",\n    \"currentDate\": \"{{$isoTimestamp}}\",\n    \"narration\": \"{{$randomAdjective}}\",\n    \"ISOCurrencyCode\": \"KES\",\n    \"paymentMode\": \"WEB\",\n    \"customerName\":\"{{$randomFullName}}\",\n    \"callback\": \"https://4851-197-248-20-39.in.ngrok.io\",\n    \"appKey\":\"62ea315fb47687d9cbbf6827\",\n    \"metadata\": {\n        \"ProductID\":\"P2021082409354313w3iSJS\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/v1/process/payment/:service",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"process",
+								"payment",
+								":service"
+							],
+							"variable": [
+								{
+									"key": "service",
+									"value": "62e77125a7d88c5d53eb6d03",
+									"description": "62e77125a7d88c5d53eb6d03"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Aug 2022 10:26:16 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "218"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, OPTIONS, GET, PUT, DELETE"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"transactionId\": \"347713dd-5d6e-4cd6-8aee-00aa0bfaadf2\",\n    \"trackingId\": \"62fcc24933bb3ff5eed710c3\",\n    \"recievedDate\": \"2022-08-17T10:26:17.000689297Z\",\n    \"statusCode\": \"P201\",\n    \"statusDescription\": \"Payment Pending Acknowledgement\"\n}"
+				}
+			]
+		},
+		{
+			"name": "AIRTIME CHARGING",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"SERVICE_CODE\", \"634bad70be9431c13b9f0b59\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"MSISDN\": \"254702079491\",\n    \"accountNumber\": \"001041501856\",\n    \"externalCode\": \"{{$randomUUID}}\",\n    \"amount\": \"1.0\",\n    \"currentDate\": \"{{$isoTimestamp}}\",\n    \"narration\": \"{{$randomAdjective}}\",\n    \"ISOCurrencyCode\": \"KES\",\n    \"paymentMode\": \"WEB\",\n    \"customerName\":\"{{$randomFullName}}\",\n    \"callback\": \"https://4851-197-248-20-39.in.ngrok.io\",\n    \"appKey\":\"{{APPKEY}}\",\n    \"metadata\": {}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ENV_URL}}/api/v1/payment/:service",
+					"host": [
+						"{{ENV_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						":service"
+					],
+					"variable": [
+						{
+							"key": "service",
+							"value": "{{SERVICE_CODE}}",
+							"description": "Safaricom airtime charging"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "AIRTIME CHARGING",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"MSISDN\": \"254702079491\",\n    \"accountNumber\": \"001041501856\",\n    \"externalCode\": \"{{$randomUUID}}\",\n    \"amount\": \"1.0\",\n    \"currentDate\": \"{{$isoTimestamp}}\",\n    \"narration\": \"{{$randomAdjective}}\",\n    \"ISOCurrencyCode\": \"KES\",\n    \"paymentMode\": \"WEB\",\n    \"customerName\":\"{{$randomFullName}}\",\n    \"callback\": \"https://4851-197-248-20-39.in.ngrok.io\",\n    \"appKey\":\"{{APPKEY}}\",\n    \"metadata\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ENV_URL}}/api/v1/payment/:service",
+							"host": [
+								"{{ENV_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								":service"
+							],
+							"variable": [
+								{
+									"key": "service",
+									"value": "{{SERVICE_CODE}}",
+									"description": "Safaricom airtime charging"
+								}
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, OPTIONS, GET, PUT"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "localhost, biz.emalify.com"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Oct 2022 07:19:32 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "223"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"TPCode\": \"Musren10180549681233344503\",\n    \"Code\": \"634d02044ac813551ce29ce9\",\n    \"RecievedDate\": \"2022-10-17T07:19:32.739Z\",\n    \"StatusCode\": \"TRX400\",\n    \"StatusDescription\": \"Subscription does not exists for the subscriber\",\n    \"metadata\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "SAF AIRTIME PAY SUB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"SERVICE_CODE\", \"634ba5c563db4ac99cf44fbc\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productcode\": \"001041501856\",\n    \"msisdn\": \"254702079491\",\n    \"requestId\": \"{{$randomUUID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ENV_URL}}/api/v1/callback/:service",
+					"host": [
+						"{{ENV_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"callback",
+						":service"
+					],
+					"variable": [
+						{
+							"key": "service",
+							"value": "{{SERVICE_CODE}}",
+							"description": "SDP Subscription code for payment"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SAF AIRTIME PAY SUB",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productcode\": \"001041501856\",\n    \"msisdn\": \"254702079491\",\n    \"requestId\": \"{{$randomUUID}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ENV_URL}}/api/v1/callback/:service",
+							"host": [
+								"{{ENV_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"callback",
+								":service"
+							],
+							"variable": [
+								{
+									"key": "service",
+									"value": "{{SERVICE_CODE}}",
+									"description": "SDP Subscription code for payment"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, OPTIONS, GET, PUT"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "localhost, biz.emalify.com"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Oct 2022 08:28:29 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "271"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"TPCode\": \"undefined\",\n    \"Code\": \"9baaeb42-e720-4cef-b483-5a6a1281b967\",\n    \"RecievedDate\": \"2022-10-17T08:28:29.09Z\",\n    \"StatusCode\": \"TRX204\",\n    \"StatusDescription\": \"Thank you customer, Your Request for the Service Gaming_payment_musren is successfully under process.\",\n    \"metadata\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "SAF AIRTIME PAY UNSUB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"SERVICE_CODE\", \"634bb3da9c0b0d8dc9de1cf9\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productcode\": \"001041501856\",\n    \"msisdn\": \"254702079491\",\n    \"requestId\": \"{{$randomUUID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ENV_URL}}/api/v1/callback/:service",
+					"host": [
+						"{{ENV_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"callback",
+						":service"
+					],
+					"variable": [
+						{
+							"key": "service",
+							"value": "{{SERVICE_CODE}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SAF AIRTIME PAY UNSUB",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productcode\": \"001041501856\",\n    \"msisdn\": \"254702079491\",\n    \"requestId\": \"{{$randomUUID}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ENV_URL}}/api/v1/callback/:service",
+							"host": [
+								"{{ENV_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"callback",
+								":service"
+							],
+							"variable": [
+								{
+									"key": "service",
+									"value": "{{SERVICE_CODE}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, OPTIONS, GET, PUT"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "localhost, biz.emalify.com"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Oct 2022 08:27:52 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "276"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"TPCode\": \"Musren10180553780868107493\",\n    \"Code\": \"17498258-5f53-4cfd-82dd-933e777c83ad\",\n    \"RecievedDate\": \"2022-10-17T08:27:52.264Z\",\n    \"StatusCode\": \"TRX400\",\n    \"StatusDescription\": \"Dear Subscriber, you dont have any Active subscription for Gaming_payment_musren service\",\n    \"metadata\": null\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{ACCESS_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const postRequest = {",
+					"  url: `${pm.collectionVariables.get(\"ENV_URL\")}/public/token/${pm.collectionVariables.get(\"SERVICE_CODE\")}`,",
+					"  method: 'POST',",
+					"  timeout: 0,",
+					"  header: {",
+					"    \"Content-Type\": \"application/json\"",
+					"  },",
+					"  body: {",
+					"        mode: 'raw',",
+					"        raw:   JSON.stringify({",
+					"    \"AppKey\": pm.collectionVariables.get(\"APPKEY\"),",
+					"      \"ApiSecret\": pm.collectionVariables.get(\"API_SECRET\")",
+					"   }),",
+					"  }",
+					"  ",
+					"",
+					"};",
+					"",
+					"pm.sendRequest(postRequest, function (err, res) {",
+					"    var responseJson = res.json();",
+					"    console.log(responseJson);",
+					"    pm.collectionVariables.set('ACCESS_TOKEN', responseJson['token']);",
+					"});",
+					"// pm.variables.get(\"variable_key\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJab2hhcmkgVGVjaCBTeXN0ZW1zIiwic3ViIjoiUGF5bWVudCBHYXRld2F5IiwiZXhwIjoxNjY0MDAxNDkwLCJuYmYiOjE2NjM5OTc4OTAsImlhdCI6MTY2Mzk5Nzg5MH0.lo-ed0EBWx557nCbg6Jo-AIqr3zsMXETUu8q8hv-cBc"
+		},
+		{
+			"key": "APPKEY",
+			"value": "62ea315fb47687d9cbbf6827"
+		},
+		{
+			"key": "API_SECRET",
+			"value": "7kTpE!RVy4q4ni0OuITyjz7VpZq!&DhSw"
+		},
+		{
+			"key": "ENV_URL",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "SERVICE_CODE",
+			"value": "62dfa03aeabc77e249463105"
+		}
+	]
+}
