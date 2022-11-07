@@ -5,6 +5,8 @@ services:
     restart: always
     env_file:
       - ./.env
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
     ports:
       - 15672:15672
     healthcheck:
@@ -36,8 +38,8 @@ services:
   redis:
     image: redis
     restart: always
-    env_file:
-      - ./.env
+    command: >
+      --requirepass ${REDIS_PASSWORD}
     depends_on:
       - mariadb
   adminer:
