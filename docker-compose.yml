@@ -20,7 +20,7 @@ services:
     env_file:
       - ./.env
   processor:
-    image: "${PROCESSOR_IMG}"
+    image: jovixe/paymentgw:14a4341
     restart: always
     container_name: processor
     env_file:

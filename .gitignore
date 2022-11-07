@@ -5,3 +5,5 @@ apigw
 integrator_scripts
 data
 .env
+tmp.*
+.vscode
