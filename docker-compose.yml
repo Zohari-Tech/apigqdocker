@@ -1,5 +1,15 @@
 version: '3.1'
 services:
+  heservice:
+    container_name: heservice
+    restart: on-failure
+    image: jovixe/he_services:7529949
+    env_file:
+      - ./.env
+    depends_on:
+      - mariadb
+    ports:
+      - 8002:8080
   rabbitmq:
     image: rabbitmq:3.10.6-management
     restart: always
@@ -32,16 +42,16 @@ services:
     depends_on:
       - rabbitmq
       - mariadb
-      - redis
+      # - redis
     ports:
       - 8001:8080
-  redis:
-    image: redis
-    restart: always
-    command: >
-      --requirepass ${REDIS_PASSWORD}
-    depends_on:
-      - mariadb
+  # redis:
+  #   image: redis
+  #   restart: always
+  #   command: >
+  #     --requirepass ${REDIS_PASSWORD}
+  #   depends_on:
+  #     - mariadb
   adminer:
     image: adminer
     restart: always
@@ -58,5 +68,3 @@ services:
       - ./.env
     depends_on:
       - rabbitmq
-      # rabbitmq:
-      #   condition: service_healthy
